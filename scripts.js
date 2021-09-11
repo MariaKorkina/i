@@ -14,11 +14,22 @@ function getData() {
     });
 }
 
+//фнукция разибвать массив на подмассивы и записывает их в новый массив
+function splitArray(arr, arraySize = 10) {
+  const subarray = [],
+        subarrayAmount = Math.ceil(arr.length / arraySize);
+  
+  for (let i = 0; i < subarrayAmount; i++) {
+    subarray[i] = arr.slice((i * arraySize), (i * arraySize) + arraySize);
+  }
+  
+  return subarray;
+}
 
 //4 - прорисовка таблицы. Создает строку таблицы с ячейками данных и добавляет их в tbody.
 //При прорисовке данных в колонке "Описание" обрезает about до длины th "Описание" (aboutLength ) деленное на 5.
 //aboutThLength / 5 примерно равно кол-ву символов, которые влезут 2-мя строками в ячейку about
-function renderCell(jsonData, pagNum = 1) {
+function renderCell(jsonData) {
   localStorage.getItem('jsonData') ? '' : localStorage.setItem('jsonData', JSON.stringify(jsonData));
   
   const data = localStorage.getItem('jsonData') ? JSON.parse( localStorage.getItem('jsonData') ) : jsonData,
@@ -96,13 +107,13 @@ function editTableData() {
         btnEdit = editForm.querySelector('.edit'),
         btnClose = editForm.querySelector('.close');
 
-  let CHANGE_ROW; // строка tr которую нужно будет редактировать
+  let change_row; // строка tr которую нужно будет редактировать
 
   //Используется делегирование событий. При клике на таблицу получает строку по которой кликнули и отображает рядом с ней форму редактирования
   table.addEventListener('click', function(event) {
     const row = event.target.closest('.data-row'); //возвращает ближайщего предка соответствующего селектору.
     
-    CHANGE_ROW = row;
+  change_row = row;
 
     if (!row) return; //проверка, содержит ли в себе event.target строку row
     if (!table.contains(row)) return; //проверка, прендалежит ли row нашей таблице.
@@ -121,7 +132,7 @@ function editTableData() {
     //узнаем длину массива, что бы узнать arraySize из функции splitArray. На случай если сделаю чтобы юзер задавал значение arraySize
     const rowAmount = splitArray(jsonData.JSON).length; 
     const editedRow = {
-      id: CHANGE_ROW.id ,
+      id: change_row.id ,
       name: {
         firstName: inputs[0].value,
         lastName: inputs[1].value,
