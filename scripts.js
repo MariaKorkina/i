@@ -87,7 +87,7 @@ function renderCell(jsonData, pagNum = 1) {
         tableData = document.querySelector('#myTable'),
         aboutTh = document.querySelector('.about'),
         aboutThLength = aboutTh.clientWidth,
-        peopleCards = splitArray(data.JSON)[pagNums - 1];
+        peopleCards = splitArray(data.JSON)[pagNum - 1];
   
   tableData.innerHTML = '';
 
