@@ -25,17 +25,7 @@ function splitArray(arr, arraySize = 10) {
   
   return subarray;
 }
-//3-функция закрашивает ячейку "цвет глаз" в соотвутсвующий цвет. 
-//Создает внутри ячейки div с фоновым цветом и цветом текста равные цвету глаз, заданный в ячейке
-function color (value) {
-  let coloredEye = document.createElement('div');
 
-  coloredEye.className = 'colored-eye';
-  coloredEye = value.innerHTML;
-  value.innerHTML = '';
-  value.append(coloredEye);
-  value.firstChild.style= `background-color: ${value.firstChild.innerHTML};`;
-}
 
 //4 - прорисовка таблицы. Создает строку таблицы с ячейками данных и добавляет их в tbody.
 //При прорисовке данных в колонке "Описание" обрезает about до длины th "Описание" (aboutLength ) деленное на 4.
@@ -59,14 +49,13 @@ function renderCell(jsonData, pagNum = 1) {
     rowTable.innerHTML = `
         <td class='first-name _cell' data-type='text'>${element.name.firstName}</td>
         <td class='last-name _cell' data-type='text'>${element.name.lastName}</td>
-        <td class='about _cell' data-type='text'>${element.about.slice(0, (aboutThLength / 4 )) + '...'}</td>
-        <td class='eye-color _cell' data-type='text'>${color}</td>
+        <td class='about _cell' data-type='text'>${element.about.slice(0, (aboutThLength / 5 )) + '...'}</td>
+        <td class='eye-color _cell' data-type='text'>${element.eyeColor}</td>
     `;
 
     tableData.append(rowTable);
     
-    const td = rowTable.querySelector('.eye-color');
-    color(td); // функция закрашивает ячейку "цвет глаз" в соотвутсвующий цвет
+   
   });
 }
 
@@ -133,50 +122,7 @@ function renderPagination(jsonData) {
   renderActivePage(data);
 }
 
-//7 - скрытие колонок
-// скрытие всех колонок
-function hideAllColumns() {
-  const btnHide = document.querySelector('.btn_hidden_all')
-  
 
-  btnHide.addEventListener('click', function () {
-    if (!table.dataset.hidden || table.dataset.hidden === 'off') {
-      table.setAttribute('data-hidden', 'on');
-      btnHide.innerHTML = 'Показать все колонки';
-      table.style.display = 'none';
-    } else if (table.dataset.hidden === 'on') {
-      table.setAttribute('data-hidden', 'off');
-      btnHide.innerHTML = 'Скрыть все колонки';
-      table.style.display = '';
-    }
-  });
-  
-}
-
-
-//Скрытие выбранной колонки
-function hideColumn() {
-  const hiddenBtns = document.querySelectorAll('.btn_hidden'),
-        table = document.querySelector('.table');
-
-  hiddenBtns.forEach((item, i) => {
-    item.addEventListener('click', () => {
-      //проверка чему равен data-hidden у span внутри кнопки, которая содержит в себе иконку "показать/скрыть"
-      if (item.children[0].dataset.hidden === 'off') {
-        item.children[0].setAttribute('data-hidden', 'on'); //заменяет иконку "показать" на иконку "скрыть"
-        table.classList.add(`hidden-${i+1}`);
-      } else if (item.children[0].dataset.hidden === 'on') {
-        item.children[0].setAttribute('data-hidden', 'off'); //заменяет иконку "скрыть" на иконку "показать"
-        table.classList.remove(`hidden-${i+1}`);
-      }
-
-      //перерисовывает таблицу при скрытии колонки
-      getData().then(() => {
-        renderCell( JSON.parse( localStorage.getItem('jsonData') ) );
-      });
-    })
-  })
-}
 
 // 8 - редактирование 
 //Форма редактирования
@@ -254,6 +200,5 @@ getData().then((jsonData) => {
   renderPagination(jsonData);
    eventSortTable();
   editTableData();
-  hideAllColumns();
-  hideColumn();
+ 
 });
