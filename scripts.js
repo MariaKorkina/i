@@ -34,7 +34,7 @@ function color (value) {
   coloredEye = value.innerHTML;
   value.innerHTML = '';
   value.append(coloredEye);
-  value.firstChild.style.cssText = `background-color: ${value.firstChild.innerHTML};`;
+  value.firstChild.style= `background-color: ${value.firstChild.innerHTML};`;
 }
 
 //4 - прорисовка таблицы. Создает строку таблицы с ячейками данных и добавляет их в tbody.
