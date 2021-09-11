@@ -25,7 +25,58 @@ function splitArray(arr, arraySize = 10) {
   
   return subarray;
 }
+//функция отрисовывает пагинацию и вызывает колбэком функицю отрисовки страницы, выбранной в пагинации 
+function renderPagination(jsonData) {
+  const data = localStorage.getItem('jsonData') ? JSON.parse( localStorage.getItem('jsonData') ) : jsonData,
+        table = document.querySelector('.table'),
+        pageCount = splitArray(data.JSON).length,
+        pagination = document.createElement('div'),
+        pagTitile = document.createElement('span');
+  
+  pagination.className = 'pagination';
+  pagTitile.textContent = 'Пагинация:';
+  pagination.append(pagTitile);
 
+  for (let i = 0; i < pageCount; i++) {
+      const pagNum = document.createElement('div');
+
+      pagNum.className = 'pagination-num';
+      pagNum.innerHTML = i + 1;
+
+      if (i === 0) pagNum.classList.add('current');
+      
+      pagination.append(pagNum);
+  }
+  
+  table.insertAdjacentElement('beforebegin', pagination);
+
+  renderActivePage(data);
+}
+
+//функция отрисовывает страницу, выбранную в пагинации
+function renderActivePage(jsonData) {
+  const pagNums = document.querySelectorAll('.pag-num');
+  
+  pagNums.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        markActivePageInPagination(i);
+        renderCell(jsonData, i + 1);
+      });
+  })
+}
+
+//показывает/отмечает активную страницу на пагинации
+function markActivePageInPagination(pagNum) {
+  const pagNums = document.querySelectorAll('.pag-num');
+
+  pagNums.forEach((item, i) => {
+    if (item.classList.contains('current') && i !== pagNum) {
+      item.classList.remove('current');
+    } else if (!item.classList.contains('current') && i === pagNum) {
+      item.classList.add('current');
+    }
+  })
+}
 //4 - прорисовка таблицы. Создает строку таблицы с ячейками данных и добавляет их в tbody.
 //При прорисовке данных в колонке "Описание" обрезает about до длины th "Описание" (aboutLength ) деленное на 5.
 //aboutThLength / 5 примерно равно кол-ву символов, которые влезут 2-мя строками в ячейку about
@@ -170,7 +221,7 @@ window.addEventListener('resize', () => {
 //Сначала выполнится функция получения данных, затем все остальные
 getData().then((jsonData) => {
   renderCell(jsonData);
-
+ renderPagination(jsonData);
    eventSortTable();
   editTableData();
  
