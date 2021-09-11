@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Infotecs</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button class="btn_hidden_all">Скрыть все колонки</button>
+      <button class='btn_hidden hidden-column' data-hidden = 'off'>Имя</button>
+      <button class='btn_hidden hidden-column' data-hidden = 'off'>Фамилия</button>
+      <button class='btn_hidden hidden-column' data-hidden = 'off'>Описание</button>
+      <button class='btn_hidden hidden-column' data-hidden = 'off'>Цвет глаз</button>
+      
+      <div class="pagination">
+      	<span>Пагинация</span>
+      	<div class="pag-num">1</div>
+      	<div class="pag-num">2</div>
+      	<div class="pag-num">3</div>
+      	<div class="pag-num">4</div>
+      	<div class="pag-num current">5</div>
+      </div>
+ <table class="table">
+	 <thead>
+	 	<tr>
+	 		<th data-column="firstName" data-order="desc" class="name selected _cell">Имя</th>
+	 		<th data-column="lastName" data-order="desc" class="lastname selected _cell">Фамилия</th>
+	 		<th data-column="about" data-order="desc" class="about selected _cell">Описание</th>
+	 		<th data-column="eyeColor" data-order="desc" class="colorEye selected _cell">Цвет глаз</th>
+	  	</tr>
+	 </thead>
+ 	<tbody id="myTable"></tbody>
+   </table>
+
+   <div class="form_wrapper" style="display: block;top: 42px; left: 777px;">
+   	<form action="" class="form">
+   		<p>
+   			Имя:
+   			<input type="text">
+   		</p>
+   		<p>
+   			Фамилия:
+   			<input type="text">
+   		</p>
+   		<p>
+   			Описание:
+   			 <textarea name="about" cols="30" rows="5"></textarea>
+   		</p>
+   		<p>
+   			Цвет глаз:
+   			<input type="text">
+   		</p>
+   	</form>
+   	<button class="edit">Редактировать</button>
+   	<button class="close">Отмена</button>
+
+
+	<script src="scripts.js"></script>
+</body>
+</html>

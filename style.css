@@ -1,0 +1,168 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 16px;
+	font-family:  'Arial';
+}
+
+button {
+	cursor: pointer;
+	display: inline-block;
+}
+
+table {
+   width: 50%;
+   border: 3px solid grey;
+   border-collapse: collapse;
+   margin-left: 10px;
+   margin-bottom: 20px;
+}
+
+.name, .lastname, .colorEye {
+   border: 1px solid grey;
+   cursor: pointer;
+   width: 15%;
+   text-align: center;
+   border: 3px solid #000;
+   padding: 10px 0
+}
+
+.colored-eye {
+  margin: 0 5px;
+  padding: 20px 0;
+  font-size: 0px;
+}
+
+.about {
+   border: 1px solid grey;
+   cursor: pointer;
+   width: 55%;
+   text-align: center;
+   border: 3px solid #000;
+   padding: 10px 0;
+}
+
+._cell{
+  text-align: center;
+  border: 3px solid black;
+  padding: 10px 0px;
+}
+
+td {
+   border: 2px solid grey;
+   display: table-cell;
+   text-align: center;
+}
+
+
+th.selected[data-order="desc"],
+th.selected[data-order="asc"] {
+    position: relative;
+}
+
+th.selected[data-order="desc"]::after,
+th.selected[data-order="asc"]::after {
+    position: absolute;
+}
+
+th.selected[data-order="desc"]::after {
+  content: "ᐯ"
+}
+
+th.selected[data-order="asc"]::after {
+  content: "ᐱ"
+}
+
+.form {
+	display: block;
+	 border: 1px solid black;
+	 position: absolute;
+	 padding: 10px;
+	 display: none;
+}
+.form_wrapper{
+  border: 1px solid black;
+  position: absolute;
+  padding: 10px;
+  display: none;
+}
+.form p {
+  margin: 10px;
+}
+
+.form input {
+  float: right;
+}
+
+
+
+.btn_hidden_all{
+  margin: 10px 10px;
+  padding: 5px 10px; 
+}
+
+.btn_hidden{
+  position: relative;
+  padding: 5px 20px;
+}
+
+.hidden-column{
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  bottom: 15%;
+  right: 0;
+}
+
+.hidden-1 .data-row td:nth-child(1),
+.hidden-1 tr th:nth-child(1){
+  display: none;
+}
+
+.hidden-2 .data-row td:nth-child(2),
+.hidden-2 tr th:nth-child(2){
+  display: none;
+}
+
+.hidden-3 .data-row td:nth-child(3),
+.hidden-3 tr th:nth-child(3){
+  display: none;
+}
+
+.hidden-4 .data-row td:nth-child(4),
+.hidden-4 tr th:nth-child(4){
+  display: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+  cursor: pointer;
+
+}
+
+.pag-num {
+  width: 17px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pag-num:active{
+  color: rgba(0, 0, 0, 1);
+  border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.current {
+  color: rgba(0, 0, 0, 1);
+  border: 2px solid rgba(0, 0, 0, 1);
+}
