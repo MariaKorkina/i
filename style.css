@@ -9,10 +9,6 @@ body {
 	font-family:  'Arial';
 }
 
-button {
-	cursor: pointer;
-	display: inline-block;
-}
 
 table {
    width: 50%;
@@ -98,45 +94,6 @@ th.selected[data-order="asc"]::after {
   float: right;
 }
 
-
-
-.btn_hidden_all{
-  margin: 10px 10px;
-  padding: 5px 10px; 
-}
-
-.btn_hidden{
-  position: relative;
-  padding: 5px 20px;
-}
-
-.hidden-column{
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  bottom: 15%;
-  right: 0;
-}
-
-.hidden-1 .data-row td:nth-child(1),
-.hidden-1 tr th:nth-child(1){
-  display: none;
-}
-
-.hidden-2 .data-row td:nth-child(2),
-.hidden-2 tr th:nth-child(2){
-  display: none;
-}
-
-.hidden-3 .data-row td:nth-child(3),
-.hidden-3 tr th:nth-child(3){
-  display: none;
-}
-
-.hidden-4 .data-row td:nth-child(4),
-.hidden-4 tr th:nth-child(4){
-  display: none;
-}
 
 .pagination {
   display: flex;
