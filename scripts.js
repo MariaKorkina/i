@@ -14,21 +14,9 @@ function getData() {
     });
 }
 
-//2 - разбиваем массив на подмассивы
-function splitArray(arr, arraySize = 10) {
-  const subarray = [],
-        subarrayAmount = Math.ceil(arr.length / arraySize);
-  
-  for (let i = 0; i < subarrayAmount; i++) {
-    subarray[i] = arr.slice((i * arraySize), (i * arraySize) + arraySize);
-  }
-  
-  return subarray;
-}
-
 
 //4 - прорисовка таблицы. Создает строку таблицы с ячейками данных и добавляет их в tbody.
-//При прорисовке данных в колонке "Описание" обрезает about до длины th "Описание" (aboutLength ) деленное на 4.
+//При прорисовке данных в колонке "Описание" обрезает about до длины th "Описание" (aboutLength ) деленное на 5.
 //aboutThLength / 5 примерно равно кол-ву символов, которые влезут 2-мя строками в ячейку about
 function renderCell(jsonData, pagNum = 1) {
   localStorage.getItem('jsonData') ? '' : localStorage.setItem('jsonData', JSON.stringify(jsonData));
@@ -94,33 +82,7 @@ function sortTable(index, order) {
 
   tableData.append(...sortedRows);
 }
-//6 -функция отрисовывает пагинацию и вызывает колбэком функицю отрисовки страницы, выбранной в пагинации 
-function renderPagination(jsonData) {
-  const data = localStorage.getItem('jsonData') ? JSON.parse( localStorage.getItem('jsonData') ) : jsonData,
-        table = document.querySelector('.table'),
-        pageCount = splitArray(data.JSON).length,
-        pagination = document.createElement('div'),
-        pagTitile = document.createElement('span');
-  
-  pagination.className = 'pagination';
-  pagTitile.textContent = 'Пагинация:';
-  pagination.append(pagTitile);
 
-  for (let i = 0; i < pageCount; i++) {
-      const pagNum = document.createElement('div');
-
-      pagNum.className = 'pagination-number';
-      pagNum.innerHTML = i + 1;
-
-      if (i === 0) pagNum.classList.add('current-pagination');
-      
-      pagination.append(pagNum);
-  }
-  
-  table.insertAdjacentElement('beforebegin', pagination);
-
-  renderActivePage(data);
-}
 
 
 
@@ -197,7 +159,7 @@ window.addEventListener('resize', () => {
 //Сначала выполнится функция получения данных, затем все остальные
 getData().then((jsonData) => {
   renderCell(jsonData);
-  renderPagination(jsonData);
+
    eventSortTable();
   editTableData();
  
