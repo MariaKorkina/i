@@ -246,7 +246,7 @@ window.addEventListener('resize', () => {
 getData().then((jsonData) => {
   renderCell(jsonData);
   renderPagination(jsonData);
-  eventSortTable();
+
   editTableData();
   hideAllColumns();
   hideColumn();
