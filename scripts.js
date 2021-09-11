@@ -28,7 +28,7 @@ function splitArray(arr, arraySize = 10) {
 //3-функция закрашивает ячейку "цвет глаз" в соотвутсвующий цвет. 
 //Создает внутри ячейки div с фоновым цветом и цветом текста равные цвету глаз, заданный в ячейке
 function color (value) {
-  const coloredEye = document.createElement('div');
+  let coloredEye = document.createElement('div');
 
   coloredEye.className = 'colored-eye';
   coloredEye = value.innerHTML;
@@ -84,20 +84,32 @@ for (let element of tableTh) {
     console.log('Column was clicked', column, order)
 
     if (column==="firstName" || column==="lastName" || column==="about" || column==="eyeColor") {
-      if (order ==='desc') {
-        element.setAttribute('data-order', "asc")
-        copy = copy.sort((a,b)=> a[column] > b[column] ? 1 : -1)
-      } 
-      else {
-         element.setAttribute('data-order', "desc")
-         copy = copy.sort((a,b)=> a[column] < b[column] ? 1 : -1)
-       }
-    buildTable(copy)
+  
+        th.setAttribute('data-order', 1);
+      } else{
+        th.setAttribute('data-order', -1);
+      }
+
+      const order = th.dataset.order;
+      th.classList.add('selected');
+
 
 
   }
 
   })
+}
+//функция sortTable() принимает индекс колонки которую нужно отсортировать и order, который используется
+
+function sortTable(index, order) {
+  const tableRows = document.querySelectorAll('.data-row'),
+        tableData = document.querySelector('.main-data');
+
+  const sortedRows = Array.from(tableRows).sort((rowA, rowB) => {
+    return rowA.cells[index].innerHTML > rowB.cells[index].innerHTML ? order  : -order;
+  });
+
+  tableData.append(...sortedRows);
 }
 //6 -функция отрисовывает пагинацию и вызывает колбэком функицю отрисовки страницы, выбранной в пагинации 
 function renderPagination(jsonData) {
