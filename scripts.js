@@ -1,4 +1,4 @@
-//1 - получаем данныу из json
+//1 - получаем данных из json с помощью fetch-запроса
 function getData() {
   return fetch('data.json')
     .then(response => {
@@ -14,7 +14,7 @@ function getData() {
     });
 }
 
-//фнукция разибвать массив на подмассивы и записывает их в новый массив
+//функция, разбивающая массив на подмассивы
 function splitArray(arr, arraySize = 10) {
   const subarray = [],
         subarrayAmount = Math.ceil(arr.length / arraySize);
@@ -40,10 +40,10 @@ function renderPagination(jsonData) {
   for (let i = 0; i < pageCount; i++) {
       const pagNum = document.createElement('div');
 
-      pagNum.className = 'pag-num';
+      pagNum.className = 'pagination-number';
       pagNum.innerHTML = i + 1;
 
-      if (i === 0) pagNum.classList.add('current');
+      if (i === 0) pagNum.classList.add('current-pagination');
       
       pagination.append(pagNum);
   }
@@ -55,7 +55,7 @@ function renderPagination(jsonData) {
 
 //функция отрисовывает страницу, выбранную в пагинации
 function renderActivePage(jsonData) {
-  const pagNums = document.querySelectorAll('.pag-num');
+  const pagNums = document.querySelectorAll('.pagination-number');
   
   pagNums.forEach((item, i) => {
       item.addEventListener('click', () => {
@@ -67,20 +67,20 @@ function renderActivePage(jsonData) {
 
 //показывает/отмечает активную страницу на пагинации
 function markActivePageInPagination(pagNum) {
-  const pagNums = document.querySelectorAll('.pag-num');
+  const pagNums = document.querySelectorAll('.pagination-number');
 
   pagNums.forEach((item, i) => {
-    if (item.classList.contains('current') && i !== pagNum) {
-      item.classList.remove('current');
-    } else if (!item.classList.contains('current') && i === pagNum) {
-      item.classList.add('current');
+    if (item.classList.contains('current-pagination') && i !== pagNum) {
+      item.classList.remove('current-pagination');
+    } else if (!item.classList.contains('current-pagination') && i === pagNum) {
+      item.classList.add('current-pagination');
     }
   })
 }
 //4 - прорисовка таблицы. Создает строку таблицы с ячейками данных и добавляет их в tbody.
 //При прорисовке данных в колонке "Описание" обрезает about до длины th "Описание" (aboutLength ) деленное на 5.
 //aboutThLength / 5 примерно равно кол-ву символов, которые влезут 2-мя строками в ячейку about
-function renderCell(jsonData) {
+function renderCell(jsonData, pagNum = 1) {
   localStorage.getItem('jsonData') ? '' : localStorage.setItem('jsonData', JSON.stringify(jsonData));
   
   const data = localStorage.getItem('jsonData') ? JSON.parse( localStorage.getItem('jsonData') ) : jsonData,
