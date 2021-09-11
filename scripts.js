@@ -90,7 +90,6 @@ for (let element of tableTh) {
         th.setAttribute('data-order', -1);
       }
 
-      const order = th.dataset.order;
       th.classList.add('selected');
 
 
