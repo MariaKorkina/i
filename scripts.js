@@ -65,7 +65,7 @@ function renderCell(jsonData, pagNum = 1) {
 
     tableData.append(rowTable);
     
-    const td = rowTable.querySelector('.colorEye');
+    const td = rowTable.querySelector('.eye-color');
     color(td); // функция закрашивает ячейку "цвет глаз" в соотвутсвующий цвет
   });
 }
