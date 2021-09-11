@@ -73,30 +73,25 @@ function renderCell(jsonData, pagNum = 1) {
 
 // 5 - сортировка по столбцам
 //получаем ячейки шапки таблицы и вешаем на них событие клик
-let tableTh = document.getElementsByTagName('th')
-//так как с помощью getElementsByTagName мы получили псевдомассив, проходимся по нему перебором
-for (let element of tableTh) {
-  element.addEventListener('click', function () {
-      
-//получаем значения атрибутов ячеек шапки таблицы, чтобы отслеживать, на какую из них кликнул пользователь
-    let column = element.getAttribute('data-column')
-    let order = element.getAttribute('data-order')
-    console.log('Column was clicked', column, order)
+function eventSortTable() {
+  const tableThs = document.querySelectorAll('th');
 
-    if (column==="firstName" || column==="lastName" || column==="about" || column==="eyeColor") {
-  
+  tableThs.forEach((th, i) => {
+    th.addEventListener('click', () => {
+      checkSelectedTh(i); // убирает класс selected и data-атрибут у неактивных заголовочных ячеек таблицы
+
+      if (!th.dataset.order || th.dataset.order === '-1') {
         th.setAttribute('data-order', 1);
-      } else{
+      } else if (th.dataset.order === '1' ) {
         th.setAttribute('data-order', -1);
       }
 
+      const order = th.dataset.order;
       th.classList.add('selected');
-
-
-
-  }
-
-  })
+      
+      sortTable(i, order); // функция сортировки данных в колонке таблицы
+    })
+  });
 }
 //функция sortTable() принимает индекс колонки которую нужно отсортировать и order, который используется
 
@@ -257,7 +252,7 @@ window.addEventListener('resize', () => {
 getData().then((jsonData) => {
   renderCell(jsonData);
   renderPagination(jsonData);
-
+   eventSortTable();
   editTableData();
   hideAllColumns();
   hideColumn();
