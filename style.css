@@ -142,11 +142,9 @@ th.selected[data-order="asc"]::after {
   display: flex;
   justify-content: flex-end;
   width: 50%;
-  cursor: pointer;
-
 }
 
-.pag-num {
+.pagination-number {
   width: 17px;
   margin-left: 5px;
   margin-bottom: 10px;
@@ -157,12 +155,12 @@ th.selected[data-order="asc"]::after {
   cursor: pointer;
 }
 
-.pag-num:active{
+.pagination-number:active {
   color: rgba(0, 0, 0, 1);
   border: 1px solid rgba(0, 0, 0, 1);
 }
 
-.current {
+.current-pagination {
   color: rgba(0, 0, 0, 1);
-  border: 2px solid rgba(0, 0, 0, 1);
+  border: 1px solid rgba(0, 0, 0, 1);
 }
