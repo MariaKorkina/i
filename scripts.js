@@ -60,13 +60,13 @@ function renderCell(jsonData, pagNum = 1) {
         <td class='first-name _cell' data-type='text'>${element.name.firstName}</td>
         <td class='last-name _cell' data-type='text'>${element.name.lastName}</td>
         <td class='about _cell' data-type='text'>${element.about.slice(0, (aboutThLength / 4 )) + '...'}</td>
-        <td class='eye-color _cell' data-type='text'>${element.eyeColor}</td>
+        <td class='eye-color _cell' data-type='text'>${color}</td>
     `;
 
     tableData.append(rowTable);
     
-    const td = rowTable.querySelector('.colorEye ');
-    eyeColor(td); // функция закрашивает ячейку "цвет глаз" в соотвутсвующий цвет
+    const td = rowTable.querySelector('.colorEye');
+    color(td); // функция закрашивает ячейку "цвет глаз" в соотвутсвующий цвет
   });
 }
 
