@@ -40,7 +40,7 @@ function renderPagination(jsonData) {
   for (let i = 0; i < pageCount; i++) {
       const pagNum = document.createElement('div');
 
-      pagNum.className = 'pagination-num';
+      pagNum.className = 'pag-num';
       pagNum.innerHTML = i + 1;
 
       if (i === 0) pagNum.classList.add('current');
