@@ -123,6 +123,7 @@ function sortTable(index, order) {
   tableData.append(...sortedRows);
 }
 
+
 // 5 - сортировка по столбцам
 //получаем ячейки шапки таблицы и вешаем на них событие клик
 function eventSortTable() {
@@ -194,7 +195,7 @@ function editTableData() {
     let editedRowIndex = 0;
 
     jsonData.JSON.forEach((item, i, arr) => {
-      if (item.id === CHANGE_ROW.id) {
+      if (item.id === change_row.id) {
         arr.splice(i, 1, editedRow);
         editedRowIndex = i + 1; 
       }
