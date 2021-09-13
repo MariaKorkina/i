@@ -77,6 +77,7 @@ function markActivePageInPagination(pagNum) {
     }
   })
 }
+
 //4 - прорисовка таблицы. Создает строку таблицы с ячейками данных и добавляет их в tbody.
 //При прорисовке данных в колонке "Описание" обрезает about до длины th "Описание" (aboutLength ) деленное на 5.
 //aboutThLength / 5 примерно равно кол-ву символов шрифта Arial 16px, которые влезут 2-мя строками в ячейку about
@@ -109,21 +110,6 @@ function renderCell(jsonData, pagNum = 1) {
   });
 }
 
-
-//функция sortTable() принимает индекс колонки которую нужно отсортировать и order, который используется
-
-function sortTable(index, order) {
-  const tableRows = document.querySelectorAll('.data-row'),
-        tableData = document.querySelector('#myTable');
-
-  const sortedRows = Array.from(tableRows).sort((rowA, rowB) => {
-    return rowA.cells[index].innerHTML > rowB.cells[index].innerHTML ? order  : -order;
-  });
-
-  tableData.append(...sortedRows);
-}
-
-
 // 5 - сортировка по столбцам
 //получаем ячейки шапки таблицы и вешаем на них событие клик
 function eventSortTable() {
@@ -146,6 +132,18 @@ function eventSortTable() {
   });
 }
 
+//функция sortTable() принимает индекс колонки которую нужно отсортировать и order, который используется
+
+function sortTable(index, order) {
+  const tableRows = document.querySelectorAll('.data-row'),
+        tableData = document.querySelector('#myTable');
+
+  const sortedRows = Array.from(tableRows).sort((rowA, rowB) => {
+    return rowA.cells[index].innerHTML > rowB.cells[index].innerHTML ? order  : -order;
+  });
+
+  tableData.append(...sortedRows);
+}
 
 // 8 - редактирование 
 //Форма редактирования
