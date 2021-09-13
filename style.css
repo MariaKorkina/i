@@ -55,21 +55,21 @@ td {
 }
 
 
-th.selected[data-order="desc"],
-th.selected[data-order="asc"] {
+th.selected[data-order="1"],
+th.selected[data-order="-1"] {
     position: relative;
 }
 
-th.selected[data-order="desc"]::after,
-th.selected[data-order="asc"]::after {
+th.selected[data-order="1"]::after,
+th.selected[data-order="-1"]::after {
     position: absolute;
 }
 
-th.selected[data-order="desc"]::after {
+th.selected[data-order="-1"]::after {
   content: "ᐯ"
 }
 
-th.selected[data-order="asc"]::after {
+th.selected[data-order="1"]::after {
   content: "ᐱ"
 }
 
