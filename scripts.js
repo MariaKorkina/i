@@ -79,7 +79,7 @@ function markActivePageInPagination(pagNum) {
 }
 //4 - прорисовка таблицы. Создает строку таблицы с ячейками данных и добавляет их в tbody.
 //При прорисовке данных в колонке "Описание" обрезает about до длины th "Описание" (aboutLength ) деленное на 5.
-//aboutThLength / 5 примерно равно кол-ву символов, которые влезут 2-мя строками в ячейку about
+//aboutThLength / 5 примерно равно кол-ву символов шрифта Arial 16px, которые влезут 2-мя строками в ячейку about
 function renderCell(jsonData, pagNum = 1) {
   localStorage.getItem('jsonData') ? '' : localStorage.setItem('jsonData', JSON.stringify(jsonData));
   
@@ -117,7 +117,7 @@ function eventSortTable() {
 
   tableThs.forEach((th, i) => {
     th.addEventListener('click', () => {
-      checkSelectedTh(i); // убирает класс selected и data-атрибут у неактивных заголовочных ячеек таблицы
+      
 
       if (!th.dataset.order || th.dataset.order === '-1') {
         th.setAttribute('data-order', 1);
@@ -132,6 +132,7 @@ function eventSortTable() {
     })
   });
 }
+
 //функция sortTable() принимает индекс колонки которую нужно отсортировать и order, который используется
 
 function sortTable(index, order) {
@@ -144,9 +145,6 @@ function sortTable(index, order) {
 
   tableData.append(...sortedRows);
 }
-
-
-
 
 // 8 - редактирование 
 //Форма редактирования
