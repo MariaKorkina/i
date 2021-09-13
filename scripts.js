@@ -105,8 +105,7 @@ function renderCell(jsonData, pagNum = 1) {
     `;
 
     tableData.append(rowTable);
-    
-   
+     
   });
 }
 
