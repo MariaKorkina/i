@@ -110,6 +110,19 @@ function renderCell(jsonData, pagNum = 1) {
 }
 
 
+//функция sortTable() принимает индекс колонки которую нужно отсортировать и order, который используется
+
+function sortTable(index, order) {
+  const tableRows = document.querySelectorAll('.data-row'),
+        tableData = document.querySelector('#myTable');
+
+  const sortedRows = Array.from(tableRows).sort((rowA, rowB) => {
+    return rowA.cells[index].innerHTML > rowB.cells[index].innerHTML ? order  : -order;
+  });
+
+  tableData.append(...sortedRows);
+}
+
 // 5 - сортировка по столбцам
 //получаем ячейки шапки таблицы и вешаем на них событие клик
 function eventSortTable() {
@@ -118,7 +131,6 @@ function eventSortTable() {
   tableThs.forEach((th, i) => {
     th.addEventListener('click', () => {
       
-
       if (!th.dataset.order || th.dataset.order === '-1') {
         th.setAttribute('data-order', 1);
       } else if (th.dataset.order === '1' ) {
@@ -133,18 +145,6 @@ function eventSortTable() {
   });
 }
 
-//функция sortTable() принимает индекс колонки которую нужно отсортировать и order, который используется
-
-function sortTable(index, order) {
-  const tableRows = document.querySelectorAll('.data-row'),
-        tableData = document.querySelector('#myTable');
-
-  const sortedRows = Array.from(tableRows).sort((rowA, rowB) => {
-    return rowA.cells[index].innerHTML > rowB.cells[index].innerHTML ? order  : -order;
-  });
-
-  tableData.append(...sortedRows);
-}
 
 // 8 - редактирование 
 //Форма редактирования
