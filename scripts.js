@@ -181,7 +181,7 @@ function editTableData() {
     //узнаем длину массива, что бы узнать arraySize из функции splitArray. На случай если сделаю чтобы юзер задавал значение arraySize
     const rowAmount = splitArray(jsonData.JSON).length; 
     const editedRow = {
-      id: change_row.id ,
+      id: change_row.id,
       name: {
         firstName: inputs[0].value,
         lastName: inputs[1].value,
