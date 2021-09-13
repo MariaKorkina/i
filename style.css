@@ -73,13 +73,13 @@ th.selected[data-order="1"]::after {
   content: "ᐱ"
 }
 
-.form {
+/*.form {
 	display: block;
 	 border: 1px solid black;
 	 position: absolute;
 	 padding: 10px;
 	 display: none;
-}
+}*/
 .form_wrapper{
   border: 1px solid black;
   position: absolute;
