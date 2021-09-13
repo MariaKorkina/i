@@ -110,14 +110,15 @@ function renderCell(jsonData, pagNum = 1) {
   });
 }
 
-// 5 - сортировка по столбцам
-//получаем ячейки шапки таблицы и вешаем на них событие клик
+//Сортировка.
+//навешивает событие на ячейки-заголовки таблицы
 function eventSortTable() {
   const tableThs = document.querySelectorAll('th');
 
   tableThs.forEach((th, i) => {
     th.addEventListener('click', () => {
-      
+      checkSelectedTh(i); // убирает класс selected и data-атрибут у неактивных заголовочных ячеек таблицы
+
       if (!th.dataset.order || th.dataset.order === '-1') {
         th.setAttribute('data-order', 1);
       } else if (th.dataset.order === '1' ) {
@@ -132,8 +133,20 @@ function eventSortTable() {
   });
 }
 
-//функция sortTable() принимает индекс колонки которую нужно отсортировать и order, который используется
+//функция убирает класс selected и data-атрибут у неактивных заголовочных ячеек таблицы
+function checkSelectedTh(index) {
+  const tableThs = document.querySelectorAll('th');
+  
+  tableThs.forEach((th, i) => {
+    if(th.classList.contains('selected') && i !== index) {
+      th.classList.toggle('selected');
+      th.removeAttribute('data-order');
+    }
+  });
+}
 
+//функция sortTable() принимает индекс колонки которую нужно отсортировать и order, который используется
+//для сортировки по возрастанию и убыванию. order = 1 || order = -1
 function sortTable(index, order) {
   const tableRows = document.querySelectorAll('.data-row'),
         tableData = document.querySelector('#myTable');
@@ -144,7 +157,6 @@ function sortTable(index, order) {
 
   tableData.append(...sortedRows);
 }
-
 
 
 // 9 - перерисовываем таблицу при изменении размера окна
