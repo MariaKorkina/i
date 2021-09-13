@@ -137,7 +137,7 @@ function eventSortTable() {
 
 function sortTable(index, order) {
   const tableRows = document.querySelectorAll('.data-row'),
-        tableData = document.querySelector('.main-data');
+        tableData = document.querySelector('#myTable');
 
   const sortedRows = Array.from(tableRows).sort((rowA, rowB) => {
     return rowA.cells[index].innerHTML > rowB.cells[index].innerHTML ? order  : -order;
