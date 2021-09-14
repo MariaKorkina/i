@@ -185,7 +185,7 @@ function editTableData() {
     inputs[0].value = row.cells[0].innerHTML;
     inputs[1].value = row.cells[1].innerHTML;
     textarea.value = row.cells[2].innerHTML.slice(0, row.cells[2].innerHTML.length - 3);
-    inputs[2].value = row.cells[3].firstChild.innerHTML;
+    inputs[2].value = row.cells[3].innerHTML;
   });
   
   //При нажатии на кнопку редактирования btnEdit содержимое ячеек строки заменяется на содержимое формы
