@@ -82,7 +82,7 @@ function markActivePageInPagination(pagNum) {
 
 // функция, осуществляющая отрисовку таблицы: создает строку таблицы с ячейками данных и добавляет их в tbody
 /*При прорисовке данных в колонке "Описание" обрезаем about до длины th "Описание" (aboutLength), деленной на 5, т.к
-aboutThLength / 5 примерно равно кол-ву символов шрифта Arial 16px*/
+aboutThLength / 5 примерно равно кол-ву символов шрифта Arial 16px, помещающихся в 2 строки*/
 
 function renderCell(jsonData, pagNum = 1) {
   localStorage.getItem('jsonData') ? '' : localStorage.setItem('jsonData', JSON.stringify(jsonData));
