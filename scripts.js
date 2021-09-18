@@ -104,7 +104,7 @@ function renderCell(jsonData, pagNum = 1) {
         <td class='first-name _cell' data-type='text'>${element.name.firstName}</td>
         <td class='last-name _cell' data-type='text'>${element.name.lastName}</td>
         <td class='about _cell' data-type='text'>${element.about.slice(0, (aboutThLength / 5 )) + '...'}</td>
-        <td class='eye-color _cell' data-type='text' style='background-color:${element.eyeColor}'>${element.eyeColor}</td>
+        <td class='eye-color _cell' data-type='text' style='background-color:${element.eyeColor}'>${element.eyeColor}</td> //окрашивает ячейку в цыет в соответствии со значением
         `;
 
     tableData.append(rowTable);
